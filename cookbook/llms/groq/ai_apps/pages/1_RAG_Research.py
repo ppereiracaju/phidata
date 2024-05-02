@@ -9,7 +9,8 @@ from phi.document.reader.pdf import PDFReader
 from phi.document.reader.website import WebsiteReader
 from phi.utils.log import logger
 
-from assistants import get_rag_research_assistant  # type: ignore
+
+from cookbook.llms.groq.ai_apps.assistants import get_rag_research_assistant  # type: ignore
 
 st.set_page_config(
     page_title="RAG Research Assistant",

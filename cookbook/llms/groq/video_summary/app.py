@@ -1,7 +1,25 @@
 import streamlit as st
+import sys, os
 from phi.tools.youtube_toolkit import YouTubeTools
 
 from assistant import get_chunk_summarizer, get_video_summarizer  # type: ignore
+
+
+current_dir = os.path.dirname(__file__)
+#print(f"os.path.dirname(__file__): {current_dir}")
+
+#For this code, we go up 3 levels to reach the tools folder
+app_root_dir = os.path.abspath(os.path.join(current_dir, os.pardir, os.pardir, os.pardir))
+
+# Append the path to sys.path
+sys.path.append(app_root_dir)
+#print(f"os.path.join PATH: {app_root_dir}")
+#print(f"SYS PATH: {sys.path}")
+
+from tools.setup_environment import EnvironmentSetup
+
+envkeys = EnvironmentSetup()
+envkeys.setup_environment()
 
 st.set_page_config(
     page_title="Youtube Video Summaries",
@@ -9,7 +27,6 @@ st.set_page_config(
 )
 st.title("Youtube Video Summaries powered by Groq")
 st.markdown("##### :orange_heart: built using [phidata](https://github.com/phidatahq/phidata)")
-
 
 def main() -> None:
     # Get model
